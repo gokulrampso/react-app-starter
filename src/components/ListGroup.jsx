@@ -1,31 +1,54 @@
 function ListGroup() {
   const items = [
-    { icon: "bi bi-star-fill text-warning me-2", text: "First item" },
-    { icon: "bi bi-lightning-fill text-primary me-2", text: "Second item" },
-    { icon: "bi bi-heart-fill text-danger me-2", text: "Third item" },
-    { icon: "bi bi-moon-stars-fill text-info me-2", text: "Fourth item" },
-    { icon: "bi bi-check-circle-fill text-success me-2", text: "Fifth item" },
+    { icon: "★", text: "First item", color: "#fbbf24" },
+    { icon: "⚡", text: "Second item", color: "#0d6efd" },
+    { icon: "❤", text: "Third item", color: "#ef4444" },
+    { icon: "🌙", text: "Fourth item", color: "#0ea5e9" },
+    { icon: "✔", text: "Fifth item", color: "#22c55e" },
   ];
   return (
     <div
-      className="card mx-auto my-4 shadow-lg border-0"
       style={{
         maxWidth: 400,
+        margin: "2rem auto",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+        borderRadius: 16,
         background: "linear-gradient(120deg, #f8fafc 60%, #e0e7ff 100%)",
+        overflow: "hidden",
       }}
     >
-      <div className="card-header bg-white border-0 pb-2">
-        <h5 className="mb-0 fw-semibold text-secondary">List Group Example</h5>
+      <div
+        style={{
+          background: "#fff",
+          borderBottom: "1px solid #eee",
+          padding: "1rem 1.5rem",
+        }}
+      >
+        <h5 style={{ margin: 0, fontWeight: 600, color: "#374151" }}>
+          List Group Example
+        </h5>
       </div>
-      <ul className="list-group list-group-flush">
+      <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
         {items.map((item, idx) => (
           <li
             key={item.text}
-            className={`list-group-item d-flex align-items-center${
-              idx === 0 ? " active" : ""
-            }`}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "0.75rem 1.5rem",
+              background:
+                idx === 0
+                  ? "linear-gradient(90deg, #0d6efd 60%, #6610f2 100%)"
+                  : "transparent",
+              color: idx === 0 ? "#fff" : "#374151",
+              fontWeight: idx === 0 ? 700 : 500,
+              fontSize: 16,
+              borderBottom: "1px solid #f3f4f6",
+            }}
           >
-            <i className={item.icon}></i>
+            <span style={{ marginRight: 12, color: item.color }}>
+              {item.icon}
+            </span>
             <span>{item.text}</span>
           </li>
         ))}

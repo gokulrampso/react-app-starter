@@ -13,31 +13,23 @@ function ProductGrid({ products, onAddToCart }) {
       : products.filter((p) => p.category === selected);
 
   return (
-    <section className="container my-5" id="shop">
-      <h2 className="mb-4 fw-bold text-secondary">Featured Products</h2>
-      <ul className="nav nav-pills mb-4 gap-2">
+    <section id="shop">
+      <h2>Featured Products</h2>
+      <ul>
         {categories.map((cat) => (
-          <li className="nav-item" key={cat}>
-            <button
-              className={`nav-link${selected === cat ? " active" : ""}`}
-              style={{ minWidth: 90 }}
-              onClick={() => setSelected(cat)}
-            >
-              {cat}
-            </button>
+          <li key={cat}>
+            <button onClick={() => setSelected(cat)}>{cat}</button>
           </li>
         ))}
       </ul>
-      <div className="row g-4">
+      <div>
         {filtered.map((product) => (
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={product.id}>
+          <div key={product.id}>
             <ProductCard product={product} onAddToCart={onAddToCart} />
           </div>
         ))}
         {filtered.length === 0 && (
-          <div className="col-12 text-center text-muted py-5">
-            No products found in this category.
-          </div>
+          <div>No products found in this category.</div>
         )}
       </div>
     </section>

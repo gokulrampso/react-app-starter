@@ -1,15 +1,17 @@
 function Blog() {
   return (
-    <div className="container py-5">
-      <h1 className="fw-bold mb-4">Susi's Clothing Blog</h1>
-      <p className="lead mb-3">
+    <div style={{ maxWidth: 800, margin: "3rem auto", padding: "0 1rem" }}>
+      <h1 style={{ fontWeight: 700, fontSize: 32, marginBottom: 24 }}>
+        Susi's Clothing Blog
+      </h1>
+      <p style={{ fontSize: 18, marginBottom: 18, color: "#374151" }}>
         Stay updated with the latest trends, style tips, and news from the world
         of fashion. Our blog brings you inspiration, guides, and
         behind-the-scenes stories from Susi's Clothing.
       </p>
-      <div className="mt-4">
-        <h5>Latest Articles</h5>
-        <ul>
+      <div style={{ marginTop: 32 }}>
+        <h5 style={{ fontWeight: 600, marginBottom: 12 }}>Latest Articles</h5>
+        <ul style={{ color: "#374151" }}>
           <li>
             <strong>Top 10 Summer Fashion Trends in India</strong> – Discover
             what's hot this season and how to style your wardrobe.
@@ -24,7 +26,9 @@ function Blog() {
           </li>
         </ul>
       </div>
-      <p className="mt-4 text-muted">More articles coming soon. Stay tuned!</p>
+      <p style={{ marginTop: 32, color: "#6b7280" }}>
+        More articles coming soon. Stay tuned!
+      </p>
     </div>
   );
 }

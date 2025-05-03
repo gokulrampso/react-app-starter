@@ -33,43 +33,83 @@ function CartPage({
 
   if (orderPlaced) {
     return (
-      <div className="container py-5 text-center">
-        <h2 className="fw-bold mb-3 text-success">Thank you for your order!</h2>
+      <div
+        style={{
+          maxWidth: 600,
+          margin: "3rem auto",
+          padding: "0 1rem",
+          textAlign: "center",
+        }}
+      >
+        <h2 style={{ fontWeight: 700, marginBottom: 16, color: "#22c55e" }}>
+          Thank you for your order!
+        </h2>
         <p>Your order has been placed and will be delivered soon.</p>
       </div>
     );
   }
 
   return (
-    <div className="container py-5">
-      <h1 className="fw-bold mb-4">Your Cart</h1>
+    <div style={{ maxWidth: 800, margin: "3rem auto", padding: "0 1rem" }}>
+      <h1 style={{ fontWeight: 700, fontSize: 32, marginBottom: 24 }}>
+        Your Cart
+      </h1>
       {cart.length === 0 ? (
-        <div className="text-center text-muted my-5">
-          <i className="bi bi-cart-x fs-1 mb-3"></i>
+        <div style={{ textAlign: "center", color: "#888", margin: "3rem 0" }}>
+          <span style={{ fontSize: 48, display: "block", marginBottom: 16 }}>
+            🛒
+          </span>
           <p>Your cart is empty.</p>
         </div>
       ) : (
         <>
-          <ul className="list-group mb-4">
+          <ul style={{ listStyle: "none", padding: 0, marginBottom: 32 }}>
             {cart.map((item) => (
               <li
-                className="list-group-item d-flex align-items-center justify-content-between"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "0.75rem 0",
+                  borderBottom: "1px solid #f3f4f6",
+                }}
                 key={item.id}
               >
-                <div className="d-flex align-items-center gap-2">
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <img
                     src={item.image}
                     alt={item.title}
-                    style={{ width: 40, height: 40, objectFit: "contain" }}
-                    className="rounded border"
+                    style={{
+                      width: 40,
+                      height: 40,
+                      objectFit: "contain",
+                      borderRadius: 8,
+                      border: "1px solid #eee",
+                    }}
                   />
                   <span>{item.title}</span>
                   <div
-                    className="input-group input-group-sm ms-2"
-                    style={{ width: 100 }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginLeft: 8,
+                      border: "1px solid #eee",
+                      borderRadius: 8,
+                      overflow: "hidden",
+                    }}
                   >
                     <button
-                      className="btn btn-outline-secondary"
+                      style={{
+                        background: "none",
+                        border: "none",
+                        color: "#0d6efd",
+                        fontWeight: 700,
+                        width: 28,
+                        height: 28,
+                        cursor: "pointer",
+                        fontSize: 18,
+                        opacity: item.qty === 1 ? 0.5 : 1,
+                      }}
                       type="button"
                       onClick={() => onDecreaseQty(item.id)}
                       disabled={item.qty === 1}
@@ -78,13 +118,27 @@ function CartPage({
                     </button>
                     <input
                       type="text"
-                      className="form-control text-center"
+                      style={{
+                        width: 32,
+                        textAlign: "center",
+                        border: "none",
+                        outline: "none",
+                        background: "transparent",
+                      }}
                       value={item.qty}
                       readOnly
-                      style={{ minWidth: 32 }}
                     />
                     <button
-                      className="btn btn-outline-secondary"
+                      style={{
+                        background: "none",
+                        border: "none",
+                        color: "#0d6efd",
+                        fontWeight: 700,
+                        width: 28,
+                        height: 28,
+                        cursor: "pointer",
+                        fontSize: 18,
+                      }}
                       type="button"
                       onClick={() => onIncreaseQty(item.id)}
                     >
@@ -92,73 +146,150 @@ function CartPage({
                     </button>
                   </div>
                 </div>
-                <div className="d-flex align-items-center gap-2">
-                  <span className="fw-bold text-primary">
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontWeight: 700, color: "#0d6efd" }}>
                     ₹{item.price * item.qty}
                   </span>
                   <button
-                    className="btn btn-sm btn-outline-danger"
+                    style={{
+                      background: "none",
+                      border: "none",
+                      color: "#dc3545",
+                      fontSize: 18,
+                      cursor: "pointer",
+                    }}
                     onClick={() => onRemove(item.id)}
                   >
-                    <i className="bi bi-trash"></i>
+                    ×
                   </button>
                 </div>
               </li>
             ))}
           </ul>
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <span className="fw-bold fs-5">Total:</span>
-            <span className="fs-4 fw-bold text-success">₹{total}</span>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 32,
+            }}
+          >
+            <span style={{ fontWeight: 700, fontSize: 20 }}>Total:</span>
+            <span style={{ fontSize: 22, fontWeight: 700, color: "#22c55e" }}>
+              ₹{total}
+            </span>
           </div>
           {!showCheckout ? (
             <button
-              className="btn btn-success btn-lg w-100"
+              style={{
+                background: "linear-gradient(90deg, #22c55e 60%, #16a34a 100%)",
+                color: "#fff",
+                border: "none",
+                borderRadius: 8,
+                padding: "0.75rem 0",
+                fontWeight: 700,
+                width: "100%",
+                fontSize: 18,
+                cursor: "pointer",
+                marginBottom: 32,
+              }}
               onClick={() => setShowCheckout(true)}
             >
               Proceed to Checkout
             </button>
           ) : (
             <form
-              className="card p-4 shadow-sm"
               onSubmit={handlePlaceOrder}
-              style={{ maxWidth: 500, margin: "0 auto" }}
+              style={{
+                background: "#fff",
+                borderRadius: 16,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                padding: 32,
+                maxWidth: 500,
+                margin: "0 auto",
+              }}
             >
-              <h4 className="mb-3">Checkout</h4>
-              <div className="mb-3">
-                <label className="form-label">Name</label>
+              <h4 style={{ fontWeight: 700, marginBottom: 24 }}>Checkout</h4>
+              <div style={{ marginBottom: 18 }}>
+                <label
+                  style={{ display: "block", fontWeight: 600, marginBottom: 6 }}
+                >
+                  Name
+                </label>
                 <input
                   type="text"
-                  className="form-control"
                   name="name"
                   value={form.name}
                   onChange={handleInput}
                   required
+                  style={{
+                    width: "100%",
+                    padding: "0.5rem 1rem",
+                    borderRadius: 8,
+                    border: "1px solid #eee",
+                    fontSize: 16,
+                  }}
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">Address</label>
+              <div style={{ marginBottom: 18 }}>
+                <label
+                  style={{ display: "block", fontWeight: 600, marginBottom: 6 }}
+                >
+                  Address
+                </label>
                 <textarea
-                  className="form-control"
                   name="address"
                   value={form.address}
                   onChange={handleInput}
                   required
+                  style={{
+                    width: "100%",
+                    padding: "0.5rem 1rem",
+                    borderRadius: 8,
+                    border: "1px solid #eee",
+                    fontSize: 16,
+                    minHeight: 64,
+                  }}
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">Payment Method</label>
+              <div style={{ marginBottom: 18 }}>
+                <label
+                  style={{ display: "block", fontWeight: 600, marginBottom: 6 }}
+                >
+                  Payment Method
+                </label>
                 <select
-                  className="form-select"
                   name="payment"
                   value={form.payment}
                   onChange={handleInput}
+                  style={{
+                    width: "100%",
+                    padding: "0.5rem 1rem",
+                    borderRadius: 8,
+                    border: "1px solid #eee",
+                    fontSize: 16,
+                  }}
                 >
                   <option value="card">Credit/Debit Card</option>
                   <option value="cod">Cash on Delivery</option>
                   <option value="upi">UPI</option>
                 </select>
               </div>
-              <button className="btn btn-primary w-100" type="submit">
+              <button
+                type="submit"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #0d6efd 60%, #6610f2 100%)",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 8,
+                  padding: "0.75rem 0",
+                  fontWeight: 700,
+                  width: "100%",
+                  fontSize: 18,
+                  cursor: "pointer",
+                }}
+              >
                 Place Order
               </button>
             </form>

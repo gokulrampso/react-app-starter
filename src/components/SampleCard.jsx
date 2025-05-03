@@ -37,40 +37,85 @@ function SampleCard() {
 
   return (
     <div
-      className="card mx-auto my-5 border-0 shadow-lg overflow-hidden position-relative"
       style={{
         maxWidth: 520,
+        margin: "2rem auto",
+        borderRadius: 20,
+        boxShadow: "0 2px 16px rgba(0,0,0,0.10)",
         background: "linear-gradient(120deg, #f8fafc 60%, #e0e7ff 100%)",
+        overflow: "hidden",
+        position: "relative",
       }}
     >
-      <span className="badge bg-primary position-absolute top-0 end-0 m-3 px-3 py-2 fs-6 shadow">
+      <span
+        style={{
+          position: "absolute",
+          top: 16,
+          right: 16,
+          background: "linear-gradient(90deg, #0d6efd 60%, #6610f2 100%)",
+          color: "#fff",
+          borderRadius: 12,
+          padding: "0.5rem 1.2rem",
+          fontWeight: 600,
+          fontSize: 16,
+          boxShadow: "0 2px 8px rgba(13,110,253,0.10)",
+        }}
+      >
         Gallery
       </span>
-      <div className="card-header bg-white border-0 pb-0 d-flex align-items-center gap-3">
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          background: "#fff",
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          padding: "1.5rem 1.5rem 0 1.5rem",
+        }}
+      >
         <img
           src={images[imgIdx]} // Display the current image
           alt={`Sample ${imgIdx + 1}`}
-          className="rounded border shadow-sm"
-          style={{ width: 80, height: 80, objectFit: "cover" }}
+          style={{
+            width: 80,
+            height: 80,
+            objectFit: "cover",
+            borderRadius: 12,
+            border: "1px solid #eee",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+          }}
         />
         <div>
-          <h3 className="card-title mb-1 fw-bold text-primary">Sample Card</h3>
-          <p className="card-text mb-0 text-secondary small">
+          <h3 style={{ fontWeight: 700, marginBottom: 4, color: "#0d6efd" }}>
+            Sample Card
+          </h3>
+          <p style={{ color: "#6b7280", fontSize: 14, margin: 0 }}>
             Click the button to see a random image!
           </p>
         </div>
       </div>
-      <div className="card-body pt-3">
+      <div style={{ padding: "1.5rem" }}>
         <button
-          className="btn btn-gradient btn-lg w-100 fw-semibold py-2"
           style={{
             background: "linear-gradient(90deg, #0d6efd 60%, #6610f2 100%)",
             color: "#fff",
             border: "none",
+            borderRadius: 10,
+            fontWeight: 600,
+            fontSize: 18,
+            width: "100%",
+            padding: "0.75rem 0",
+            boxShadow: "0 2px 8px rgba(13,110,253,0.10)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8,
           }}
           onClick={showRandomImage}
         >
-          <i className="bi bi-shuffle me-2"></i>Show Random Image
+          <span style={{ fontSize: 20 }}>🔀</span>Show Random Image
         </button>
       </div>
     </div>

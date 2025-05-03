@@ -10,59 +10,136 @@ function ProfilePage() {
   }, []);
 
   return (
-    <div className="container py-5">
-      <div className="row g-4">
-        <div className="col-12 col-lg-4">
-          <div className="card shadow-sm border-0 mb-4">
-            <div className="card-body text-center">
-              <div className="mb-3">
+    <div style={{ maxWidth: 1100, margin: "3rem auto", padding: "0 1rem" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 32 }}>
+        <div style={{ flex: "1 1 320px", maxWidth: 360 }}>
+          <div
+            style={{
+              background: "#fff",
+              borderRadius: 16,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+              marginBottom: 24,
+            }}
+          >
+            <div style={{ padding: 32, textAlign: "center" }}>
+              <div style={{ marginBottom: 16 }}>
                 <img
                   src="https://ui-avatars.com/api/?name=Demo+User&background=0d6efd&color=fff&size=96"
                   alt="User Avatar"
-                  className="rounded-circle border border-3 border-primary mb-2"
-                  style={{ width: 96, height: 96 }}
+                  style={{
+                    width: 96,
+                    height: 96,
+                    borderRadius: "50%",
+                    border: "3px solid #0d6efd",
+                    marginBottom: 8,
+                  }}
                 />
               </div>
-              <h4 className="fw-bold mb-1">Demo User</h4>
-              <p className="text-muted mb-2">demo@susisclothing.com</p>
-              <span className="badge bg-primary">Customer</span>
+              <h4 style={{ fontWeight: 700, marginBottom: 4 }}>Demo User</h4>
+              <p style={{ color: "#6b7280", marginBottom: 8 }}>
+                demo@susisclothing.com
+              </p>
+              <span
+                style={{
+                  background: "#0d6efd",
+                  color: "#fff",
+                  borderRadius: 8,
+                  padding: "0.25em 0.75em",
+                  fontWeight: 600,
+                  fontSize: 14,
+                }}
+              >
+                Customer
+              </span>
             </div>
           </div>
         </div>
-        <div className="col-12 col-lg-8">
-          <div className="card shadow-sm border-0">
-            <div className="card-body">
-              <h4 className="fw-bold mb-4 text-primary">Order History</h4>
+        <div style={{ flex: "2 1 500px", minWidth: 320 }}>
+          <div
+            style={{
+              background: "#fff",
+              borderRadius: 16,
+              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+            }}
+          >
+            <div style={{ padding: 32 }}>
+              <h4
+                style={{ fontWeight: 700, marginBottom: 24, color: "#0d6efd" }}
+              >
+                Order History
+              </h4>
               {orders.length === 0 ? (
-                <div className="alert alert-info mb-0">
+                <div
+                  style={{
+                    background: "#e0e7ff",
+                    color: "#374151",
+                    borderRadius: 8,
+                    padding: 16,
+                    marginBottom: 0,
+                  }}
+                >
                   No orders yet. Start shopping to see your orders here!
                 </div>
               ) : (
-                <div className="table-responsive">
-                  <table className="table table-hover align-middle">
-                    <thead className="table-light">
+                <div style={{ overflowX: "auto" }}>
+                  <table
+                    style={{
+                      width: "100%",
+                      borderCollapse: "collapse",
+                      fontSize: 15,
+                    }}
+                  >
+                    <thead style={{ background: "#f3f4f6" }}>
                       <tr>
-                        <th scope="col">Order #</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Items</th>
+                        <th style={{ textAlign: "left", padding: 12 }}>
+                          Order #
+                        </th>
+                        <th style={{ textAlign: "left", padding: 12 }}>Date</th>
+                        <th style={{ textAlign: "left", padding: 12 }}>
+                          Total
+                        </th>
+                        <th style={{ textAlign: "left", padding: 12 }}>
+                          Items
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {orders.map((order, idx) => (
-                        <tr key={idx}>
-                          <td className="fw-semibold">{order.id}</td>
-                          <td>{order.date}</td>
-                          <td className="text-success">₹{order.total}</td>
-                          <td>
-                            <ul className="list-unstyled mb-0">
+                        <tr
+                          key={idx}
+                          style={{ borderBottom: "1px solid #f3f4f6" }}
+                        >
+                          <td style={{ fontWeight: 600, padding: 12 }}>
+                            {order.id}
+                          </td>
+                          <td style={{ padding: 12 }}>{order.date}</td>
+                          <td
+                            style={{
+                              color: "#22c55e",
+                              fontWeight: 600,
+                              padding: 12,
+                            }}
+                          >
+                            ₹{order.total}
+                          </td>
+                          <td style={{ padding: 12 }}>
+                            <ul
+                              style={{
+                                listStyle: "none",
+                                margin: 0,
+                                padding: 0,
+                              }}
+                            >
                               {order.items.map((item) => (
-                                <li key={item.id} className="small">
-                                  <span className="fw-semibold">
+                                <li
+                                  key={item.id}
+                                  style={{ fontSize: 14, marginBottom: 2 }}
+                                >
+                                  <span style={{ fontWeight: 600 }}>
                                     {item.title}
                                   </span>{" "}
                                   x{item.qty}{" "}
-                                  <span className="text-muted">
+                                  <span style={{ color: "#6b7280" }}>
                                     (₹{item.price * item.qty})
                                   </span>
                                 </li>

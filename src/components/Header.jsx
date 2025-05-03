@@ -1,24 +1,19 @@
+// src/components/Header.jsx
 function Header() {
   return (
-    <header
-      className="bg-gradient bg-primary text-white shadow"
-      style={{
-        background: "linear-gradient(90deg, #0d6efd 60%, #6610f2 100%)",
-      }}
-    >
-      <div className="container py-4 d-flex align-items-center gap-3">
+    <header>
+      <div>
         <img
-          src="https://avatars.githubusercontent.com/u/69631?s=80"
-          alt="Logo"
-          className="rounded-circle border border-3 border-white shadow-sm"
-          style={{ width: 56, height: 56 }}
+          src="https://avatars.githubusercontent.com/u/69631?s=160"
+          alt="Susi's Clothing Logo"
         />
-        <div>
-          <h1 className="display-6 fw-bold mb-1">Sample React App</h1>
-          <p className="lead mb-0 text-white-50">
-            A modern, professional React app styled with Bootstrap
-          </p>
-        </div>
+        <h1>Welcome to Susi's Clothing</h1>
+        <p>
+          Discover premium fashion for men, women, and kids. Shop the latest
+          trends, enjoy fast delivery, and experience top-rated support—all in
+          one beautiful store.
+        </p>
+        <a href="#shop">Shop Now</a>
       </div>
     </header>
   );
